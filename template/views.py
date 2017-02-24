@@ -8,7 +8,7 @@ from django.conf import settings
 from .models import Template
 
 from deepInsight.util import get_logger
-from deepInsight.watchdog.base_monitor import *
+from deepInsight.monitor.base_monitor import *
 
 
 class TemplateManager:

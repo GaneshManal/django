@@ -30,7 +30,7 @@ COLLECTORS = "collectors"
 ORCH_COMM = "orch_comm"
 PCON_COMM = "pcon_comm"
 KAFKA_CLIENT = "localhost:9092"
-CONTROLLER = os.path.join(settings.BASE_DIR, 'deepInsight', 'watchdog', 'pcontroller.py')
+CONTROLLER = os.path.join(settings.BASE_DIR, 'deepInsight', 'monitor', 'pcontroller.py')
 
 # ################### POLLER Constants ##########################
 POLLERM = "pollerm"
@@ -61,7 +61,7 @@ UPDATE = "update"
 RESUME = "resume"
 
 POLL_WAIT_TIME_MS = 15000
-STATE_FILE_PATH = os.path.join(settings.BASE_DIR, 'deepInsight', 'watchdog', 'plugins', 'state.db')
+STATE_FILE_PATH = os.path.join(settings.BASE_DIR, 'deepInsight', 'monitor', 'plugins', 'state.db')
 DEFAULT_INTERVAL = 10
 JOB_POLLER = 'mapr_job'
 

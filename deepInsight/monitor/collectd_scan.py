@@ -1,6 +1,6 @@
 import sys
 from base_monitor import *
-from deepInsight.watchdog.constants import *
+from deepInsight.monitor.constants import *
 from deepInsight.util import get_logger
 import copy
 from mako.template import Template

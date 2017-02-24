@@ -5,7 +5,7 @@ from kafka import KafkaConsumer, KafkaProducer
 import multiprocessing
 from django.conf import settings
 from deepInsight.util import get_logger, get_job_time_out
-from deepInsight.watchdog.constants import *
+from deepInsight.monitor.constants import *
 import multiprocessing
 import thread
 
@@ -360,8 +360,8 @@ class PollerManager(BaseMonitor):
 
         dirty_list, app_ids = [], []
         print 'subtemplate: ', json.dumps(self.sub_template)
-        for item in self.sub_template[PLUGINS]:
-            if item[NAME] == JOB_POLLER:
+        for item in self.sub_template.gete(PLUGINS, []):
+            if item.get(NAME) == JOB_POLLER:
                 dirty_list.append(JOB_POLLER)
                 # item[META] = job_meta
                 app_ids = item.get(META).get("application_names", [])

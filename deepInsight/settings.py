@@ -16,7 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(BASE_DIR, 'template', 'templates')
 CONF_DIR = os.path.join(BASE_DIR, 'deepInsight', 'conf')
-PROFILE_DIR = os.path.join(BASE_DIR, 'deepInsight', 'watchdog', 'plugins')
+PROFILE_DIR = os.path.join(BASE_DIR, 'deepInsight', 'monitor', 'plugins')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/

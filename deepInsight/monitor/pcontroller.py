@@ -10,8 +10,8 @@ import os
 sys.path.append(os.getcwd())
 
 from deepInsight.util import get_logger
-# from deepInsight.watchdog.constants import *
-from deepInsight.watchdog.poller_watch import *
+# from deepInsight.monitor.constants import *
+from deepInsight.monitor.poller_watch import *
 from django.conf import settings
 
 

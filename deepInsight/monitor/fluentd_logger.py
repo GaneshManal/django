@@ -1,7 +1,7 @@
 from base_monitor import *
 from django.conf import settings
 from deepInsight.util import get_logger
-from deepInsight.watchdog.constants import *
+from deepInsight.monitor.constants import *
 
 
 class FluentdPluginManager(BaseMonitor):
