@@ -1,0 +1,219 @@
+[       n9k_poller.py:   151 -                 poll()] 2017-02-01 10:20:18,536 [ INFO] ----------------------------------------------------------------------------------------------------
+[       n9k_poller.py:   153 -                 poll()] 2017-02-01 10:20:18,536 [ INFO] device_ip: 10.11.0.78
+[       n9k_poller.py:   154 -                 poll()] 2017-02-01 10:20:18,536 [ INFO] interfaces: {'ethernet1/1': 'n9k-poller-2.cisco.com', 'ethernet1/2': 'compute_3'}
+[       n9k_poller.py:   155 -                 poll()] 2017-02-01 10:20:18,536 [ INFO] correlation: yes
+[       n9k_poller.py:   156 -                 poll()] 2017-02-01 10:20:18,536 [ INFO] discovery_protocol: lldp
+[       n9k_poller.py:   157 -                 poll()] 2017-02-01 10:20:18,536 [ INFO] port: 80
+[       n9k_poller.py:   158 -                 poll()] 2017-02-01 10:20:18,538 [ INFO] secure_connection: no
+[       n9k_poller.py:   159 -                 poll()] 2017-02-01 10:20:18,538 [ INFO] log_level: DEBUG
+[       n9k_poller.py:   160 -                 poll()] 2017-02-01 10:20:18,538 [ INFO] log_dir: .
+[       n9k_poller.py:   161 -                 poll()] 2017-02-01 10:20:18,538 [ INFO] reset_counters: no
+[       n9k_poller.py:    44 -   normal_iface_names()] 2017-02-01 10:20:18,539 [DEBUG] normalised interfaces: {'ethernet1/1': 'n9k-poller-2.cisco.com', 'ethernet1/2': 'compute_3'}
+[   connectionpool.py:   214 -            _new_conn()] 2017-02-01 10:20:18,543 [ INFO] Starting new HTTP connection (1): 10.11.0.78
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:19,661 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[       n9k_poller.py:   205 -                 poll()] 2017-02-01 10:20:19,663 [ INFO] interface: ethernet1/1, compute: n9k-poller-2.cisco.com
+[       n9k_poller.py:   238 -                 poll()] 2017-02-01 10:20:19,663 [ INFO] correlation is yes tag and host names are from meta data
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:20,582 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:21,529 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:22,319 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[       n9k_poller.py:   205 -                 poll()] 2017-02-01 10:20:22,321 [ INFO] interface: ethernet1/2, compute: compute_3
+[       n9k_poller.py:   238 -                 poll()] 2017-02-01 10:20:22,321 [ INFO] correlation is yes tag and host names are from meta data
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:23,240 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:24,142 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:24,900 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[       n9k_poller.py:   336 -                 poll()] 2017-02-01 10:20:24,901 [ INFO] 
+Output:
+ [{'access_vlan': None,
+  'admin_status_code': 'up',
+  'interface': 'ethernet1/1',
+  'n9k_poller_tag': 'n9k-poller-2.cisco.com',
+  'neighbor_host': 'n9k-poller-2.cisco.com',
+  'operational_status_code': 'up',
+  'peak.buffer': None,
+  'peak.percent': None,
+  'rx.DropPkts': 0,
+  'rx.bytes': 0,
+  'rx.bytesRate': 0,
+  'rx.pkts': 0,
+  'rx.pktsRate': 0,
+  'timestamp': '2017-02-01T10:20:19',
+  'total.buffer': None,
+  'trunk_vlans': '1-4094',
+  'tx.DropPkts': 0,
+  'tx.bytes': 0,
+  'tx.bytesRate': 0,
+  'tx.pkts': 0,
+  'tx.pktsRate': 0,
+  'vlan_mode': 'trunk'},
+ {'access_vlan': '1',
+  'admin_status_code': 'up',
+  'interface': 'ethernet1/2',
+  'n9k_poller_tag': 'compute_3',
+  'neighbor_host': 'compute_3',
+  'operational_status_code': 'up',
+  'peak.buffer': None,
+  'peak.percent': None,
+  'rx.DropPkts': 0,
+  'rx.bytes': 0,
+  'rx.bytesRate': 0,
+  'rx.pkts': 0,
+  'rx.pktsRate': 0,
+  'timestamp': '2017-02-01T10:20:22',
+  'total.buffer': None,
+  'trunk_vlans': None,
+  'tx.DropPkts': 0,
+  'tx.bytes': 0,
+  'tx.bytesRate': 0,
+  'tx.pkts': 0,
+  'tx.pktsRate': 0,
+  'vlan_mode': 'access'}]
+[       n9k_poller.py:   337 -                 poll()] 2017-02-01 10:20:24,901 [ INFO] 
+State:
+ {'error': None, 'message': 'stats query successful', 'status_code': 200}
+[       n9k_poller.py:   151 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] ----------------------------------------------------------------------------------------------------
+[       n9k_poller.py:   153 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] device_ip: 10.11.0.78
+[       n9k_poller.py:   154 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] interfaces: {'ethernet1/1': 'None', 'ethernet1/2': 'None'}
+[       n9k_poller.py:   155 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] correlation: no
+[       n9k_poller.py:   156 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] discovery_protocol: lldp
+[       n9k_poller.py:   157 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] port: 80
+[       n9k_poller.py:   158 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] secure_connection: no
+[       n9k_poller.py:   159 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] log_level: NOTSET
+[       n9k_poller.py:   160 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] log_dir: .
+[       n9k_poller.py:   161 -                 poll()] 2017-02-01 10:20:36,582 [ INFO] reset_counters: no
+[       n9k_poller.py:    44 -   normal_iface_names()] 2017-02-01 10:20:36,582 [DEBUG] normalised interfaces: {'ethernet1/1': 'None', 'ethernet1/2': 'None'}
+[   connectionpool.py:   214 -            _new_conn()] 2017-02-01 10:20:36,582 [ INFO] Starting new HTTP connection (1): 10.11.0.78
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:37,648 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[       n9k_poller.py:   205 -                 poll()] 2017-02-01 10:20:37,650 [ INFO] interface: ethernet1/1, compute: None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:38,470 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[       n9k_poller.py:   267 -                 poll()] 2017-02-01 10:20:38,470 [ INFO] found hostname for ethernet1/1: n9k-poller-2.cisco.com
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:39,391 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:40,349 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:41,253 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[       n9k_poller.py:   205 -                 poll()] 2017-02-01 10:20:41,253 [ INFO] interface: ethernet1/2, compute: None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:42,059 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[       n9k_poller.py:   261 -                 poll()] 2017-02-01 10:20:42,059 [WARNING] couldn't find neighbor_host of ethernet1/2 ... DO NOT ADD neighbor_host INFO IN STATS INFO.
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:42,990 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:43,910 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[   connectionpool.py:   401 -        _make_request()] 2017-02-01 10:20:44,658 [DEBUG] "POST /ins HTTP/1.1" 200 None
+[       n9k_poller.py:   336 -                 poll()] 2017-02-01 10:20:44,661 [ INFO] 
+Output:
+ [{'access_vlan': None,
+  'admin_status_code': 'up',
+  'interface': 'ethernet1/1',
+  'n9k_poller_tag': None,
+  'neighbor_host': None,
+  'operational_status_code': 'up',
+  'peak.buffer': None,
+  'peak.percent': None,
+  'rx.DropPkts': 0,
+  'rx.bytes': 0,
+  'rx.bytesRate': 0,
+  'rx.pkts': 0,
+  'rx.pktsRate': 0,
+  'timestamp': '2017-02-01T10:20:37',
+  'total.buffer': None,
+  'trunk_vlans': '1-4094',
+  'tx.DropPkts': 0,
+  'tx.bytes': 0,
+  'tx.bytesRate': 0,
+  'tx.pkts': 0,
+  'tx.pktsRate': 0,
+  'vlan_mode': 'trunk'},
+ {'access_vlan': '1',
+  'admin_status_code': 'up',
+  'interface': 'ethernet1/2',
+  'n9k_poller_tag': None,
+  'neighbor_host': None,
+  'operational_status_code': 'up',
+  'peak.buffer': None,
+  'peak.percent': None,
+  'rx.DropPkts': 0,
+  'rx.bytes': 0,
+  'rx.bytesRate': 0,
+  'rx.pkts': 0,
+  'rx.pktsRate': 0,
+  'timestamp': '2017-02-01T10:20:41',
+  'total.buffer': None,
+  'trunk_vlans': None,
+  'tx.DropPkts': 0,
+  'tx.bytes': 0,
+  'tx.bytesRate': 0,
+  'tx.pkts': 0,
+  'tx.pktsRate': 0,
+  'vlan_mode': 'access'}]
+[       n9k_poller.py:   337 -                 poll()] 2017-02-01 10:20:44,661 [ INFO] 
+State:
+ {'error': None, 'message': 'stats query successful', 'status_code': 200}
+[       n9k_poller.py:   151 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] ----------------------------------------------------------------------------------------------------
+[       n9k_poller.py:   153 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] device_ip: 10.11.0.78
+[       n9k_poller.py:   154 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] interfaces: {'ethernet1/1': 'None', 'ethernet1/2': 'compute_3'}
+[       n9k_poller.py:   155 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] correlation: no
+[       n9k_poller.py:   156 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] discovery_protocol: cdp
+[       n9k_poller.py:   157 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] port: 443
+[       n9k_poller.py:   158 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] secure_connection: yes
+[       n9k_poller.py:   159 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] log_level: NOTSET
+[       n9k_poller.py:   160 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] log_dir: .
+[       n9k_poller.py:   161 -                 poll()] 2017-02-01 10:20:44,667 [ INFO] reset_counters: no
+[       n9k_poller.py:    44 -   normal_iface_names()] 2017-02-01 10:20:44,667 [DEBUG] normalised interfaces: {'ethernet1/1': 'None', 'ethernet1/2': 'compute_3'}
+[       n9k_poller.py:   181 -                 poll()] 2017-02-01 10:20:44,667 [ERROR] 
+Output:
+ []
+[       n9k_poller.py:   182 -                 poll()] 2017-02-01 10:20:44,667 [ERROR] 
+State:
+ {'error': 'Invalid', 'message': 'Invalid meta data', 'status_code': 404}
+[       n9k_poller.py:   151 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] ----------------------------------------------------------------------------------------------------
+[       n9k_poller.py:   153 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] device_ip: 10.11.0.78
+[       n9k_poller.py:   154 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] interfaces: {'ethernet1/6': 'None', 'ethernet1/7': 'compute_3'}
+[       n9k_poller.py:   155 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] correlation: yes
+[       n9k_poller.py:   156 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] discovery_protocol: cdp
+[       n9k_poller.py:   157 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] port: 443
+[       n9k_poller.py:   158 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] secure_connection: yes
+[       n9k_poller.py:   159 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] log_level: NOTSET
+[       n9k_poller.py:   160 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] log_dir: .
+[       n9k_poller.py:   161 -                 poll()] 2017-02-01 10:20:44,673 [ INFO] reset_counters: no
+[       n9k_poller.py:    44 -   normal_iface_names()] 2017-02-01 10:20:44,674 [DEBUG] normalised interfaces: {'ethernet1/6': 'None', 'ethernet1/7': 'compute_3'}
+[       n9k_poller.py:   181 -                 poll()] 2017-02-01 10:20:44,674 [ERROR] 
+Output:
+ []
+[       n9k_poller.py:   182 -                 poll()] 2017-02-01 10:20:44,674 [ERROR] 
+State:
+ {'error': 'Invalid', 'message': 'Invalid meta data', 'status_code': 404}
+[       n9k_poller.py:   151 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] ----------------------------------------------------------------------------------------------------
+[       n9k_poller.py:   153 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] device_ip: 10.11.0.77
+[       n9k_poller.py:   154 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] interfaces: {'ethernet1/6': 'compute_1', 'ethernet1/7': 'compute_3'}
+[       n9k_poller.py:   155 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] correlation: no
+[       n9k_poller.py:   156 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] discovery_protocol: cdp
+[       n9k_poller.py:   157 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] port: 443
+[       n9k_poller.py:   158 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] secure_connection: yes
+[       n9k_poller.py:   159 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] log_level: NOTSET
+[       n9k_poller.py:   160 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] log_dir: .
+[       n9k_poller.py:   161 -                 poll()] 2017-02-01 10:20:44,680 [ INFO] reset_counters: no
+[       n9k_poller.py:    44 -   normal_iface_names()] 2017-02-01 10:20:44,680 [DEBUG] normalised interfaces: {'ethernet1/6': 'compute_1', 'ethernet1/7': 'compute_3'}
+[   connectionpool.py:   805 -            _new_conn()] 2017-02-01 10:20:44,680 [ INFO] Starting new HTTPS connection (1): 10.11.0.77
+[       n9k_poller.py:   198 -                 poll()] 2017-02-01 10:20:46,648 [ERROR] 
+Output:
+ []
+[       n9k_poller.py:   199 -                 poll()] 2017-02-01 10:20:46,648 [ERROR] 
+State:
+ {'error': 'Exception',
+ 'message': "HTTPSConnectionPool(host='10.11.0.77', port=443): Max retries exceeded with url: /ins (Caused by NewConnectionError('<requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x035474D0>: Failed to establish a new connection: [Errno 10061] No connection could be made because the target machine actively refused it',))",
+ 'status_code': 404}
+[       n9k_poller.py:   151 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] ----------------------------------------------------------------------------------------------------
+[       n9k_poller.py:   153 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] device_ip: 10.11.0.78
+[       n9k_poller.py:   154 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] interfaces: {}
+[       n9k_poller.py:   155 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] correlation: no
+[       n9k_poller.py:   156 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] discovery_protocol: cdp
+[       n9k_poller.py:   157 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] port: 443
+[       n9k_poller.py:   158 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] secure_connection: yes
+[       n9k_poller.py:   159 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] log_level: NOTSET
+[       n9k_poller.py:   160 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] log_dir: .
+[       n9k_poller.py:   161 -                 poll()] 2017-02-01 10:20:46,654 [ INFO] reset_counters: no
+[       n9k_poller.py:    44 -   normal_iface_names()] 2017-02-01 10:20:46,654 [DEBUG] normalised interfaces: {}
+[       n9k_poller.py:   172 -                 poll()] 2017-02-01 10:20:46,654 [ERROR] 
+Output:
+ []
+[       n9k_poller.py:   173 -                 poll()] 2017-02-01 10:20:46,654 [ERROR] 
+State:
+ {'error': 'Invalid',
+ 'message': 'No interfaces specified for polling',
+ 'status_code': 404}

@@ -1,0 +1,258 @@
+{
+	"id": "6b43bf85-a891-b142-591a-5d66d5150a63",
+	"name": "django-deepInsight remote",
+	"description": "",
+	"order": [
+		"de0718db-08ee-b56a-bdb6-34b59594eeb0",
+		"033530e8-1998-95f1-c947-9c5d5143aa6c",
+		"40eec24b-50f7-968e-01ca-8e8fffc55b2d",
+		"c86262f4-532a-2166-b99a-8b543d4db23e",
+		"1473806e-2df5-2e98-124d-626dbdc216d4",
+		"7691cd57-9f1f-418c-349f-fe2a671e8682",
+		"be7bf565-81b8-fd29-6de3-129bfe670179",
+		"1d61b31f-9484-d08d-743b-bff6775c954f",
+		"9b2cadee-93ef-91fe-8bd0-e44e1f25b8ef"
+	],
+	"folders": [],
+	"timestamp": 1486097585167,
+	"owner": "1024217",
+	"public": false,
+	"requests": [
+		{
+			"id": "1473806e-2df5-2e98-124d-626dbdc216d4",
+			"headers": "",
+			"url": "http://10.23.235.131:8888/monitor/65b138f8/start",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "file",
+					"value": "sample_profile_prod.json",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1486320482999,
+			"name": "http://127.0.0.1/monitor/123/start",
+			"description": "Start a template based Monitoring.",
+			"collectionId": "6b43bf85-a891-b142-591a-5d66d5150a63",
+			"responses": []
+		},
+		{
+			"id": "1d61b31f-9484-d08d-743b-bff6775c954f",
+			"headers": "",
+			"url": "http://10.23.235.131:8888/monitor/65b138f8/teardown",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "file",
+					"value": "sample_profile_prod.json",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1486320574637,
+			"name": "http://127.0.0.1/monitor/123/teardown",
+			"description": "Teardown a Template.",
+			"collectionId": "6b43bf85-a891-b142-591a-5d66d5150a63",
+			"responses": []
+		},
+		{
+			"id": "40eec24b-50f7-968e-01ca-8e8fffc55b2d",
+			"headers": "",
+			"url": "http://10.23.235.131:8888/template/add",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "POST",
+			"data": [
+				{
+					"key": "file",
+					"value": "logger_collector_poller.json",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1486320400034,
+			"name": "http://127.0.0.1/template/add",
+			"description": "Add a new Templates.",
+			"collectionId": "6b43bf85-a891-b142-591a-5d66d5150a63",
+			"responses": []
+		},
+		{
+			"id": "7691cd57-9f1f-418c-349f-fe2a671e8682",
+			"headers": "Cookie: name=1234\n",
+			"url": "http://10.23.235.131:8888/template/status/65b138f8",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "file",
+					"value": "sample_profile_prod.json",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1486320504830,
+			"name": "http://127.0.0.1/template/status/123",
+			"description": "Get a status for Active Template.",
+			"collectionId": "6b43bf85-a891-b142-591a-5d66d5150a63",
+			"responses": []
+		},
+		{
+			"id": "9b2cadee-93ef-91fe-8bd0-e44e1f25b8ef",
+			"headers": "",
+			"url": "http://10.23.235.131:8888/template/delete/",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "file",
+					"value": "sample_profile_prod.json",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1486239901916,
+			"name": "http://127.0.0.1/template/delete/123",
+			"description": "Delete a template.",
+			"collectionId": "6b43bf85-a891-b142-591a-5d66d5150a63",
+			"responses": []
+		},
+		{
+			"id": "be7bf565-81b8-fd29-6de3-129bfe670179",
+			"headers": "",
+			"url": "http://10.23.235.131:8888/monitor/65b138f8/stop",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "file",
+					"value": "sample_profile_prod.json",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1486320558634,
+			"name": "http://127.0.0.1/monitor/123/stop",
+			"description": "Stop a template based Monitoring.",
+			"collectionId": "6b43bf85-a891-b142-591a-5d66d5150a63",
+			"responses": []
+		},
+		{
+			"id": "c86262f4-532a-2166-b99a-8b543d4db23e",
+			"headers": "Cookie: name=1234\n",
+			"url": "http://10.23.235.131:8888/template/show/65b138f8",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "file",
+					"value": "sample_profile_prod.json",
+					"type": "file",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"type": "text",
+					"enabled": false
+				}
+			],
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1486320468099,
+			"name": "http://127.0.0.1/template/show/123",
+			"description": "Read a template",
+			"collectionId": "6b43bf85-a891-b142-591a-5d66d5150a63",
+			"responses": []
+		},
+		{
+			"id": "de0718db-08ee-b56a-bdb6-34b59594eeb0",
+			"headers": "",
+			"url": "http://10.23.235.131:8888/template/all",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": [
+				{
+					"key": "file",
+					"value": "sample_profile_logger_only.json",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataMode": "params",
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1486100092134,
+			"name": "http://127.0.0.1/template/all",
+			"description": "List All Templates.",
+			"collectionId": "6b43bf85-a891-b142-591a-5d66d5150a63",
+			"responses": []
+		}
+	]
+}

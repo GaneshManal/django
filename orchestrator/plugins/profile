@@ -1,0 +1,4 @@
+{
+"linux_static": ["cpu_static"],
+"linux_dynamic": ["disk_stat", "ram_usage", "disk_usage", "tcp_stats", "nic_stats", "cpu"]
+}

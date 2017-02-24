@@ -1,0 +1,174 @@
+{
+    "name": "Hadoop_Cluster001",
+    "tags": [
+    ],
+    "poller": {
+        "targets": [
+            {
+                "name": "cluster_writer",
+                "plugin_file": "sample_es_writer",
+                "mode": "frill",
+                "type": "elasticsearch",
+                "meta": {
+                    "host": "192.168.100.111",
+                    "port": "9200",
+                    "index": "mapr_cluster",
+                    "ds_type": "mapr_cluster_poll"
+                }
+            },
+            {
+                "name": "job_writer",
+                "plugin_file": "sample_es_writer",
+                "mode": "frill",
+                "type": "elasticsearch",
+                "meta": {
+                    "host": "192.168.100.111",
+                    "port": "9200",
+                    "index": "mapr_job",
+                    "ds_type": "mapr_job_poll"
+                }
+            }
+        ],
+        "plugins": [
+            {
+                "name": "mapr_cluster",
+                "plugin_file": "hadoop_cluster_poller",
+                "mode": "frill",
+                "targets": [
+                    "cluster_writer"
+                ],
+                "interval": 300,
+                "tags": [
+
+                ],
+                "enable": true,
+                "meta": {
+                    "cluster_ip": "192.168.100.205",
+                    "username": "mapr",
+                    "password": "mapr",
+                    "port": 8443
+                }
+            },
+            {
+                "name": "mapr_job",
+                "plugin_file": "hadoop_job_poller",
+                "mode": "frill",
+                "targets": [
+                    "job_writer"
+                ],
+                "interval": 30,
+                "tags": [
+
+                ],
+                "enable": false,
+                "meta": {
+                    "resource_manager_address": "192.168.100.205",
+                    "port": 8088,
+                    "application_ids": [
+
+                    ],
+                    "running_jobs": [
+
+                    ]
+                }
+            }
+        ]
+    },
+    "sub_template": [
+        {
+            "name": "ALL NODES",
+            "node_list": [
+                "node114",
+                "node115",
+                "node116"
+            ],
+            "collectors": {
+                "enable": true,
+                "interval": "30",
+                "plugins": [
+                    {
+                        "name": "linux_static",
+                        "enable": true,
+                        "interval": "3600",
+                        "tags": [
+
+                        ],
+                        "targets": [
+                            "elasticsearch"
+                        ]
+                    },
+                    {
+                        "name": "linux_dynamic",
+                        "enable": true,
+                        "interval": "300",
+                        "tags": [
+
+                        ],
+                        "targets": [
+                            "elasticsearch"
+                        ]
+                    }
+                ],
+                "targets": [
+                    {
+                        "name": "elasticsearch",
+                        "type": "elasticsearch",
+                        "host": "192.168.100.111",
+                        "port": "9200",
+                        "index": "collector"
+                    }
+                ]
+            },
+            "loggers": {
+                "enable": false,
+                "interval": "30",
+                "plugins": [
+                    {
+                        "type": "yarn_node_manager",
+                        "tags": [
+
+                        ],
+                        "filter": {
+                            "level": [
+                                "ERROR",
+                                "WARNING"
+                            ]
+                        }
+                    },
+                    {
+                        "type": "yarn_resource_manager",
+                        "tags": [
+
+                        ],
+                        "filter": {
+                            "level": [
+                                "INFO",
+                                "WARNING"
+                            ]
+                        }
+                    },
+                    {
+                        "type": "syslog",
+                        "tags": [
+
+                        ],
+                        "filter": {
+                            "level": [
+                                "WARNING",
+                                "ERROR"
+                            ]
+                        }
+                    }
+                ],
+                "targets": [
+                    {
+                        "type": "elasticsearch",
+                        "host": "192.168.100.111",
+                        "port": "9200",
+                        "index": "logger"
+                    }
+                ]
+            }
+        }
+    ]
+}

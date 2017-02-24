@@ -1,0 +1,56 @@
+{
+  "name": "Hadoop_Cluster001",
+  "tags": [
+    "test"
+  ],
+  "node_list": [
+    "node114"
+  ],
+  "sub_template": [
+    {
+      "name": "ALL NODES",
+      "loggers": {
+        "enable": true,
+        "interval": "30",
+        "plugins": [
+          {
+            "type": "yarn_node_manager",
+            "tag": "node_mgr",
+            "filter": {
+              "level": [
+                "INFO",
+                "WARNING"
+              ]
+            }
+          },
+          {
+            "type": "yarn_resource_manager",
+            "tag": "reso_mgr",
+            "filter": {
+              "level": [
+                "ERROR"
+              ]
+            }
+          },
+          {
+            "type": "syslog",
+            "tag": "syslog",
+            "filter": {
+              "level": [
+                "ALL"
+              ]
+            }
+          }
+        ],
+        "target": [
+          {
+            "type": "elasticsearch",
+            "host": "192.168.100.111",
+            "port": "9200",
+            "index_name": "xyz_logger"
+          }
+        ]
+      }
+    }
+  ]
+}

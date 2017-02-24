@@ -1,0 +1,51 @@
+{
+  "name": "Hadoop_Cluster002",
+  "tags": [
+    "test"
+  ],
+  "node_list": [
+    "node114"
+  ],
+  "sub_template": [
+    {
+      "name": "ALL NODES",
+      "collectors": {
+        "enable": true,
+        "interval": "30",
+        "plugins": [
+          {
+            "name": "linux_static",
+            "enable": true,
+            "interval": "30",
+            "tags": [
+              "linux_static"
+            ],
+            "targets": [
+              "elasticsearch"
+            ]
+          },
+          {
+            "name": "linux_dynamic",
+            "enable": true,
+            "interval": "15",
+            "tags": [
+              "linux_dynamic"
+            ],
+            "targets": [
+              "elasticsearch"
+            ]
+          }
+        ],
+        "targets": [
+          {
+            "name": "elasticsearch",
+            "type": "elasticsearch",
+            "host": "192.168.100.111",
+            "port": "9200",
+            "index": "xyz_collector"
+          }
+        ]
+      }
+    }
+  ]
+}

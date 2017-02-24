@@ -1,0 +1,46 @@
+{
+  "yarn_node_manager": {
+    "source": {
+      "@type": "tail",
+      "path": "/opt/mapr/hadoop/hadoop-2.7.0/logs/yarn-mapr-nodemanager-*.log",
+      "read_from_head": "true",
+      "pos_file": "/var/log/td-agent/yarn.node.err.pos"
+    },
+    "filter": {
+      "node": "#{Socket.gethostname}",
+      "time": "#{Time.now.to_f}"
+    },
+    "match": {
+      "flush_interval": "10s"
+    }
+  },
+  "yarn_resource_manager": {
+    "source": {
+      "@type": "tail",
+      "path": "/opt/mapr/hadoop/hadoop-2.7.0/logs/yarn-mapr-resourcemanager-*.log",
+      "read_from_head": "true",
+      "pos_file": "/var/log/td-agent/yarn.resrc.err.pos"
+    },
+    "filter": {
+      "node": "#{Socket.gethostname}",
+      "time": "#{Time.now.to_f}"
+    },
+    "match": {
+      "flush_interval": "20s"
+    }
+  },
+  "syslog": {
+    "source": {
+      "@type": "syslog"
+    },
+    "filter": {
+      "node": "#{Socket.gethostname}",
+      "time": "#{Time.now.to_f}"
+    },
+    "match": {
+      "flush_interval": "30s",
+      "tag": "**"
+    }
+  },
+  "default_flush_interval": "60s"
+}

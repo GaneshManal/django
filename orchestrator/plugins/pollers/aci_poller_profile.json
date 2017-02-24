@@ -1,0 +1,32 @@
+{
+  "stats_family": [{
+    "family_name": "ingrTotal",
+    "family_sub_type": [
+      "bytesCum",
+      "bytesRate",
+      "pktsCum",
+      "pktsRate"
+    ]
+  },
+  {
+    "family_name": "egrTotal",
+    "family_sub_type": [
+      "bytesCum",
+      "bytesRate",
+      "pktsCum",
+      "pktsRate"
+    ]
+  },
+  {
+    "family_name": "ingrDropPkts",
+    "family_sub_type": [
+      "bufferCum"
+      ]
+  },
+  {
+    "family_name": "egrDropPkts",
+    "family_sub_type": [
+      "bufferCum"
+    ]
+  }]
+}

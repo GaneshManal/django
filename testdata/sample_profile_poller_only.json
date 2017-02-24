@@ -1,0 +1,81 @@
+{
+  "name": "Hadoop_Cluster003",
+  "node_list": [
+    "node114"
+  ],
+  "tags": [
+    "test"
+  ],
+  "sub_template": [
+    {
+      "pollers": {
+        "targets": [
+          {
+            "name": "cluster_writer",
+            "plugin_file": "sample_es_writer",
+            "mode": "frill",
+            "meta": {
+              "index": "xyz_mapr_cluster",
+              "host": "192.168.100.111",
+              "port": "9200",
+              "ds_type": "mapr_cluster_poll"
+            }
+          },
+          {
+            "mode": "frill",
+            "meta": {
+              "index": "xyz_mapr_job",
+              "host": "192.168.100.111",
+              "port": "9200",
+              "ds_type": "mapr_job_poll"
+            },
+            "name": "job_writer",
+            "plugin_file": "sample_es_writer"
+          }
+        ],
+        "plugins": [
+          {
+            "enable": true,
+            "name": "mapr_cluster",
+            "tags": [
+              "cluster"
+            ],
+            "interval": 10,
+            "plugin_file": "hadoop_cluster_poller",
+            "meta": {
+              "cluster_ip": "192.168.100.205",
+              "username": "mapr",
+              "password": "mapr",
+              "port": 8443
+            },
+            "mode": "frill",
+            "targets": [
+              "cluster_writer"
+            ]
+          },
+          {
+            "enable": true,
+            "name": "mapr_job",
+            "tags": [
+              "job"
+            ],
+            "interval": 10,
+            "plugin_file": "hadoop_job_poller",
+            "meta": {
+              "resource_manager_address": "192.168.100.205",
+              "application_names": [
+
+              ],
+              "port": 8088
+            },
+            "mode": "frill",
+            "targets": [
+              "job_writer"
+            ]
+          }
+        ]
+      },
+      "name": "ALL NODES"
+    }
+  ]
+}

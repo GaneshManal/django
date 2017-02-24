@@ -1,0 +1,31 @@
+{
+  "host": "10.81.1.12",
+  "port": "443",
+  "credentials": {
+    "username": "admin",
+    "password": "maplelabs"
+  },
+  "correlation": "yes",
+  "discovery_protocol": "lldp",
+  "log_level": "DEBUG",
+  "log_dir": "/var/log/aci_poller",
+
+  "input_port_mapping": [
+    {
+      "hostname": "",
+      "interface": "1/101/1/41"
+    },
+    {
+      "hostname": "",
+      "interface": "1/101/1/42"
+    },
+    {
+      "hostname": "",
+      "interface": "1/102/1/49"
+    },
+    {
+      "hostname": "",
+      "interface": "1/201/5/1"
+    }
+  ]
+}

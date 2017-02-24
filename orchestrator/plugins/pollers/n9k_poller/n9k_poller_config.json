@@ -1,0 +1,15 @@
+{
+  "stats_interface":
+  {
+    "tx.pkts": "eth_outpkts",
+    "tx.bytes": "eth_outbytes",
+    "rx.pkts": "eth_inpkts",
+    "rx.bytes": "eth_inbytes",
+    "rx.bytesRate": "eth_inrate1_bits",
+    "rx.pktsRate": "eth_inrate1_pkts",
+    "tx.bytesRate": "eth_outrate1_bits",
+    "tx.pktsRate": "eth_outrate1_pkts",
+    "rx.DropPkts": "eth_inerr",
+    "tx.DropPkts": "eth_outerr"
+  }
+}
