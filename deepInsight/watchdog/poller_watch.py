@@ -1,12 +1,13 @@
+from base_monitor import *
 import json
-import multiprocessing
-
+import time
 from kafka import KafkaConsumer, KafkaProducer
-from orchestrator.watchdog.constants import *
-
-from orchestrator.base_monitor import *
-from orchestrator.util import get_logger
-
+import multiprocessing
+from django.conf import settings
+from deepInsight.util import get_logger, get_job_time_out
+from deepInsight.watchdog.constants import *
+import multiprocessing
+import thread
 
 class PollerManager(BaseMonitor):
     NAME = "pollers"
@@ -23,6 +24,9 @@ class PollerManager(BaseMonitor):
     check_point = {}
     plugin_id_map = {}
     plugin_count_map = {}
+
+    mapr_user = 'mapr'
+    mapr_home = os.path.sep + os.path.join('home', 'mapr')
 
     def __init__(self, tid):
         super(PollerManager, self).__init__(PollerManager.NAME, tid)
@@ -55,7 +59,7 @@ class PollerManager(BaseMonitor):
             self.logger.error("Error: Failed to start Consumer: %s, topic: %s" % (self.kafka_client, self.pcon_comm))
             exit(0)
 
-    def deploy(self, oper):
+    def deploy(self, oper, dirty_list=[]):
         # Start Producer
         self.orch_comm_producer = self._start_producer()
 
@@ -68,7 +72,6 @@ class PollerManager(BaseMonitor):
         os.system(controller)
 
         # GAMGAM: Dirty list ( Yet to Handle )
-        dirty_list = []
         # self.logger.debug("Template: %s", json.dumps(self.template))
         self.logger.debug("Sub-Template: %s", json.dumps(self.sub_template))
         self.logger.debug("dirty_list- %s", dirty_list)
@@ -199,8 +202,188 @@ class PollerManager(BaseMonitor):
         return plugin_name + "_" + str(self.plugin_count_map[plugin_name]) + "_" + str(self.controller_id)
 
 
+    def start_yarn_application(self, job_meta):
+        job_timeout = get_job_time_out()
+        self.logger.info('Job Timeout in seconds: %s', str(job_timeout))
+        self.logger.debug("Job Details: %s", json.dumps(job_meta.get('job_details')))
+
+        resource_manager = str()
+        if self.template.get('node_list'):
+            resource_manager = self.template.get('node_list')[0]
+        self.logger.debug("Resource Manager: %s", resource_manager or "None")
+
+        job_tag = job_meta.get('tag', None)
+        job_details = job_meta.get("job_details", {})
+        job_type = job_details.get('job_type', None)
+        job_name = job_type + '_' + os.urandom(4).encode('hex')
+        self.logger.info("job_type: %s, job_name: %s" % (job_type, job_name))
+
+        application_id = None
+        try:
+            job_cmd = str()
+            if job_type:
+                job_name_option, job_tag_option = str(), str()
+
+                job_name_option = '-Dmapreduce.job.name={}'.format(job_name)
+                if job_tag:
+                    job_tag_option = '-Dmapreduce.job.tags={}'.format(job_tag)
+
+                # TestDFSIO Read & Write
+                jar_name = '/opt/mapr/hadoop/hadoop-0.20.2/hadoop-0.20.2-dev-test.jar'
+
+                if job_type.lower() in ['dfsioread', 'dfsiowrite']:
+
+                    file_count = job_details.get('nrfiles', 0)
+                    file_size = job_details.get('filesize', 0)
+                    test_name = 'TestDFSIO'
+
+                    if job_tag:
+                        if job_type.lower() == "dfsioread":
+                            job_cmd = 'yarn jar {} {} {} {} -read -nrFiles {} -fileSize {}'.format(
+                            jar_name, test_name,job_name_option, job_tag_option, file_count, file_size)
+                        else:
+                            job_cmd = 'yarn jar {} {} {} {} -write -nrFiles {} -fileSize {}'.format(
+                                jar_name, test_name, job_name_option, job_tag_option, file_count, file_size)
+
+                    else:
+                        if job_type.lower() == "dfsioread":
+                            job_cmd = 'yarn jar {} {} {} -read -nrFiles {} -fileSize {}'.format(
+                            jar_name, test_name, job_name_option, file_count, file_size)
+                        else:
+                            job_cmd = 'yarn jar {} {} {} -write -nrFiles {} -fileSize {}'.format(
+                                jar_name, test_name, job_name_option, file_count, file_size)
+
+                        self.logger.debug("job_cmd: %s", job_cmd)
+
+                # Teragen
+                if job_type.lower() == 'teragen':
+
+                    file_size = job_details.get('filesize', 0)
+                    jar_name = '/opt/mapr/hadoop/hadoop-0.20.2/hadoop-0.20.2-dev-examples.jar'
+                    test_name = 'teragen'
+                    if job_tag:
+                        job_cmd = 'hadoop fs -rm -r -f -skipTrash /terasort-input; yarn jar {} {} {} {} {} /terasort-input'.format(
+                            jar_name, test_name, job_name_option, job_tag_option, file_size)
+                    else:
+                        job_cmd = 'hadoop fs -rm -r -f -skipTrash /terasort-input; yarn jar {} {} {} {}'.format(
+                            jar_name, test_name, job_name_option, file_size)
+
+                # Terasort
+                if job_type.lower() == 'terasort':
+                    # file_size = job_details.get('file_size')
+                    jar_name = '/opt/mapr/hadoop/hadoop-0.20.2/hadoop-0.20.2-dev-examples.jar'
+                    test_name = 'terasort'
+                    if job_tag:
+                        job_cmd = 'hadoop fs -rm -r -f -skipTrash /terasort-output; yarn jar {} {} {} {} /terasort-input /terasort-output'.format(
+                            jar_name, test_name, job_name_option, job_tag_option)
+                    else:
+                        job_cmd = 'hadoop fs -rm -r -f -skipTrash /terasort-output; yarn jar {} {} {} /terasort-input /terasort-output'.format(
+                            jar_name, test_name, job_name_option)
+
+                log_file = self.mapr_home + os.path.sep + job_name + '.log'
+                yarn_command = 'su -l {} -c "{} &> {}"'.format(self.mapr_user, job_cmd, log_file)
+                print "#"*50
+                print "YARN Command : ", yarn_command
+                print "#" * 50
+
+                if yarn_command:
+                    salt_client = salt.client.LocalClient()
+                    job_exec_status = salt_client.cmd(resource_manager, fun="cmd.run_bg", arg=[yarn_command])
+                    print 'Job exec status :' + json.dumps(job_exec_status)
+                    self.logger.debug("Job Execution Status: %s", json.dumps(job_exec_status))
+
+                    counter, result = job_timeout, {}
+                    while True:
+                        counter -= 1
+                        job_started_expr = ' Submitted application application_'
+                        result = salt_client.cmd(resource_manager, fun="file.grep",arg=[log_file, job_started_expr])
+                        if (not result.get(resource_manager).get('retcode')) or (not counter):
+                            break
+                        time.sleep(1)
+                    print "\nYARN Result: ", result
+                    if result:
+                        application_id = result.get(resource_manager).get('stdout').split()[-1]
+                        self.logger.info("YARN application Started Successfully")
+                        return application_id
+                    else:
+                        raise Exception('Unable to execute yarn application')
+                else:
+                    raise Exception('Unable to execute yarn application')
+
+        except Exception as e:
+            self.logger.exception("Exception while starting job %s, Exception: %s" % (job_name, str(e)))
+            raise e
+
+    def monitor_poller_job(self, app_id, test_var):
+        self.logger.info("Starting hadoop application {} polling for template {}.".format(app_id, self.tid))
+        job_status_flag = 0
+        temp, job_plugin_status  = None, None
+
+        while True:
+            time.sleep(5)
+            temp = self.check_state(plugin_id=JOB_POLLER)
+
+            print "="*50
+            print "APP {} STATUS:{} ".format(app_id, temp)
+            print "=" * 50
+
+            if temp != {}:
+                job_plugin_status = temp
+            else:
+                print "******LAST STATUS :", str(job_plugin_status)
+                continue
+
+            for app in job_plugin_status.get('applications_status'):
+                if app['application_id'] == app_id:
+                    if app['status'] in ['FINISHED', 'KILLED']:
+                        job_meta = self.sub_template.get(PLUGINS).get(JOB_POLLER)
+                        if app_id in job_meta.get('application_ids'):
+                            job_meta.get('application_ids').remove(app_id)
+                            self.sub_template[PLUGINS][JOB_POLLER][META] = job_meta
+                            print "APP {} REMOVE".format(app_id)
+
+                            # GAMGAM
+                            self.logger.info("Got to set profile to idle here.")
+                            # profile_manager.set_idle_profile(template_id)
+
+                            self.logger.info("For template %s, Stopped hadoop application [{}] Polling" % (self.tid, app_id))
+                            return
+        return None
+        # Code ends here.
+
+    def start_job(self, job_meta):
+        # Update poller Meta data
+        app_ids = []
+
+        self.logger.debug("Template before starting Job: %s" % (self.sub_template))
+        self.logger.debug("Updating Poller Job plugin meta data.")
+
+        dirty_list, app_ids = [], []
+        print 'subtemplate: ', json.dumps(self.sub_template)
+        for item in self.sub_template[PLUGINS]:
+            if item[NAME] == JOB_POLLER:
+                dirty_list.append(JOB_POLLER)
+                # item[META] = job_meta
+                app_ids = item.get(META).get("application_names", [])
+                self.deploy(START, dirty_list)
+                break
+        self.logger.debug("Template updated to: %s" % (self.sub_template))
+
+        app_id = self.start_yarn_application(job_meta)
+        app_ids.append(app_id)
+        self.logger.info("Application Started successfully: %s" % (app_id))
+
+        # Set Active Profile.
+        thread.start_new_thread( self.monitor_poller_job, (app_id, 'test'))
+        response = dict()
+        response["application_id"] = app_id
+        response["message"] = "Successfully initiated the yarn application"
+        return json.dumps(response)
+        # Code Ends here
+
 def pcon_consumer():
     # self.logger.debug("pcon_consumer: Starting Process.")
+    print 'Starting Consumer Process.'
     try:
         with open(STATE_FILE_PATH, 'w') as fh:
             fh.write("{}")

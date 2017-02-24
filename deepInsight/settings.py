@@ -14,9 +14,9 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_DIR = os.path.join(BASE_DIR, 'template', 'data')
-CONF_DIR = os.path.join(BASE_DIR, 'orchestrator', 'conf')
-PROFILE_DIR = os.path.join(BASE_DIR, 'orchestrator', 'watchdog', 'plugins')
+DATA_DIR = os.path.join(BASE_DIR, 'template', 'templates')
+CONF_DIR = os.path.join(BASE_DIR, 'deepInsight', 'conf')
+PROFILE_DIR = os.path.join(BASE_DIR, 'deepInsight', 'watchdog', 'plugins')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -53,7 +53,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'orchestrator.urls'
+ROOT_URLCONF = 'deepInsight.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'orchestrator.wsgi.application'
+WSGI_APPLICATION = 'deepInsight.wsgi.application'
 
 
 # Database

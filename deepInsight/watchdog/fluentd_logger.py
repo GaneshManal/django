@@ -1,8 +1,7 @@
+from base_monitor import *
 from django.conf import settings
-from orchestrator.watchdog.constants import *
-
-from orchestrator.base_monitor import *
-from orchestrator.util import get_logger
+from deepInsight.util import get_logger
+from deepInsight.watchdog.constants import *
 
 
 class FluentdPluginManager(BaseMonitor):

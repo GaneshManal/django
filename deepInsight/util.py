@@ -5,6 +5,13 @@ from logging.handlers import TimedRotatingFileHandler
 from django.conf import settings
 
 
+def get_job_time_out():
+    config = ConfigParser.ConfigParser()
+    config.read(settings.CONF_DIR + os.path.sep + 'system_config.ini')
+    time_out = config.get('HADOOP_JOB', 'job_time_out')
+    return int(time_out)
+
+
 def get_logger(module_name):
     logger = logging.getLogger(module_name)
     config = ConfigParser.ConfigParser()

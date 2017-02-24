@@ -1,0 +1,1 @@
+This is to define actual views ( html / jinja )

@@ -62,7 +62,7 @@
             "interval": 10,
             "plugin_file": "hadoop_job_poller",
             "meta": {
-              "resource_manager_address": "192.168.100.205",
+              "resource_manager_address": "node114",
               "application_names": [
 
               ],

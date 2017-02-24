@@ -1,10 +1,9 @@
+import sys
+from base_monitor import *
+from deepInsight.watchdog.constants import *
+from deepInsight.util import get_logger
 import copy
-
 from mako.template import Template
-from orchestrator.watchdog.constants import *
-
-from orchestrator.base_monitor import *
-from orchestrator.util import get_logger
 
 
 class CollectdPluginManager(BaseMonitor):

@@ -18,7 +18,7 @@ import json
 import time
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 import abc
-from orchestrator.util import get_logger
+from deepInsight.util import get_logger
 
 __author__ = 'Anand Nevase'
 

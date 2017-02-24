@@ -1,7 +1,7 @@
 import abc
 import os
 from django.conf import settings
-from orchestrator.util import get_logger
+from deepInsight.util import get_logger
 import salt.client
 import json
 

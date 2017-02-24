@@ -1,10 +1,14 @@
 # from django.shortcuts import render
 # import django
+import json
+import os
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.views.decorators.csrf import csrf_exempt
-
-from orchestrator.base_monitor import *
+from django.conf import settings
 from .models import Template
+
+from deepInsight.util import get_logger
+from deepInsight.watchdog.base_monitor import *
 
 
 class TemplateManager:

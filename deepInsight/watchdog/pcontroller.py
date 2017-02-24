@@ -1,13 +1,17 @@
 import datetime
 import imp
-import os
+import json
+from kafka import KafkaConsumer, KafkaProducer
+import multiprocessing
 import sys
 import time
+import os
 
 sys.path.append(os.getcwd())
 
-# from orchestrator.watchdog.constants import *
-from orchestrator.poller.poller_watch import *
+from deepInsight.util import get_logger
+# from deepInsight.watchdog.constants import *
+from deepInsight.watchdog.poller_watch import *
 from django.conf import settings
 
 
